@@ -1,0 +1,28 @@
+
+
+<div class="buddylist">
+<div class="buddy" style="text-align:center"><strong>Buddy List</strong></div>
+
+<% @buddies.each do |buddy| %>
+	
+	<div class="buddy">
+	
+		<% form_remote_tag :url=> {:action=> "messagebox"}, :update => "messages" do %>
+
+			<%= text_field_tag(:buddy, nil, :value => buddy, :type => "hidden") %>
+			<%= buddy %>   <%= submit_tag "Chat" %>
+
+		<% end %>	
+	</div>
+	
+<% end %>
+
+<br><br>
+</div>
+
+<div id="received"></div>
+<div id="also"></div>
+
+<div id="messages" class="rightside">
+
+</div>

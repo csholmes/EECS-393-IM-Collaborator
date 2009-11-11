@@ -1,0 +1,19 @@
+<div class="message" id="message_<%= @user %>">
+	<div class="messageheader"><%= @user %></div>
+	
+	<div class="messagetext" id="message_text_<%= @user %>">
+	<%= @text %>
+	</div>
+	
+	<div class= "entry">
+		
+	<% form_remote_tag :url=> {:action=> "sendmessage"}, :update => "message_"+@user do %>
+
+		<%= text_field_tag(:msg) %>
+		<%= text_field_tag(:buddy, nil, :value => @user, :type => "hidden") %>
+		<%= text_field_tag(:text, nil, :value => @text, :type => "hidden") %>
+   		<%= submit_tag "Send" %>
+
+	<% end %>
+	</div>
+</div>

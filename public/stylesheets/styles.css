@@ -1,0 +1,95 @@
+/* styles.css */
+/* Curtis Holmes, 8 October 2009 */
+
+body {
+	background-color: #3399CC;
+}
+
+.thehead {
+	font-family: garamond;
+	font-size:x-large;
+	color: white;
+}
+
+.loginbox {
+	top:0px;
+	left:0px;
+	width:300px;
+	height:170px;
+	position:relative;
+	-moz-border-radius: 10px; 
+	-webkit-border-radius: 10px;
+	background-color: white;
+	opacity: 0.9;
+	text-align:center;
+	font-family: garamond;
+}
+
+.buddy {
+	margin: 0px 0px 2px 0px;
+	padding-left:5px;
+	top:0px;
+	left:0px;
+	width:300px;
+	height:30px;
+	position:relative;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	background-color: white;
+	opacity: 0.9;
+	font-family: garamond;	
+}
+.buddylist {
+	top:80px;
+	left:40px;
+	width:300px;
+	position:absolute;	
+	
+}
+.rightside {
+	top:80px;
+	left:360px;
+	width:300px;
+	position:absolute;	
+	
+}
+/* MESSAGE CSS */
+.message {
+	height:158px;
+	-moz-border-radius: 5px; 
+	-webkit-border-radius: 5px;
+	background-color: white;
+	opacity: 0.9;
+	border: 3px;
+	border-color: blue;
+}
+
+.messageheader {
+	height: 20px;
+	background-color: blue;
+	color: white;
+	font-family: garamond;
+	text-align:center;
+	-moz-border-radius-topleft: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-radius-top-left: 5px; 
+	-webkit-border-radius-top-right: 5px; 
+
+}
+
+.messagetext {
+	height: 100px;
+}
+
+/* END MESSAGE CSS */
+
+#subbox {
+	padding: 5px;
+}
+
+#rightbox {
+	top:100px;
+	left: 360px;
+	position:absolute;
+	width:;
+}
