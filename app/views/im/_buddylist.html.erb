@@ -7,12 +7,12 @@
 	
 	<div class="buddy">
 	
-		<% form_remote_tag :url=> {:action=> "messagebox"}, :update => "messages" do %>
+		<%# form_remote_tag :url=> {:action=> "messagebox"}, :update => "messages" do %>
 
-			<%= text_field_tag(:buddy, nil, :value => buddy, :type => "hidden") %>
-			<%= buddy %>   <%= submit_tag "Chat" %>
+			<%#= text_field_tag(:buddy, nil, :value => buddy, :type => "hidden") %>
+			<%= buddy %> <button type="button" onclick="createMessageDiv('<%= buddy %>');">Chat</button>   <%#= submit_tag "Chat" %> 
 
-		<% end %>	
+		<%# end %>	
 	</div>
 	
 <% end %>

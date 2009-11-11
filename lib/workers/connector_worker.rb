@@ -67,6 +67,17 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
   def logout
     @cl.close
   end
+  
+  def send_message(arg)
+    
+    login_info = arg.pop
+    msg_info = arg.pop
+    
+    login(:arg => login_info)
+    message(:arg => msg_info)
+    logout
+        
+  end
 
 end
 

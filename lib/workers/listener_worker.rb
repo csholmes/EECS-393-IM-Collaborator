@@ -28,9 +28,9 @@ class ListenerWorker < BackgrounDRb::MetaWorker
        pres = Jabber::Presence.new.set_type(:available)
        @cl.send(pres)
      rescue
-       Juggernaut.send_to_all("alert('Connection Problem')")
+       #Juggernaut.send_to_all("alert('Connection Problem')")
      else
-       Juggernaut.send_to_all("alert('Connected successfully')")
+       #Juggernaut.send_to_all("alert('Connected successfully')")
      end
 
      @cl.add_presence_callback do |pres|

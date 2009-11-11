@@ -51,16 +51,16 @@ class ImController < ApplicationController
   def sendmessage
     
     worker = MiddleMan.worker(:connector_worker, session[:login])
-    msg_info = [params[:buddy], params[:msg]]
-  
-    @user = params[:buddy]
-    @text = params[:text] + "Me: " + params[:msg] + "<br/>"
-    
-    render :partial => "displaymessage"
-    
     worker.login(:arg => [session[:login], session[:password]])
-    worker.message(:arg => msg_info)
+    worker.message(:arg => [params[:to], params[:msg]])
     worker.logout
+    
+    #@user = params[:buddy]
+    #@text = params[:text] + "Me: " + params[:msg] + "<br/>"
+    render :nothing => true
+    
+    #render :partial => "displaymessage"
+    
   end
   
 end
