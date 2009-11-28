@@ -6,14 +6,12 @@
   <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
   <title>IM Collaborator</title>
   <%= stylesheet_link_tag 'styles' %>
-  <%= javascript_include_tag 'messages' %>
+  <%= javascript_include_tag 'functions' %>
   <%= javascript_include_tag :defaults %>
   <%= javascript_include_tag 'prototype', :juggernaut %>
 	
 </head>
 <body>
-<span id="nothing"></span>
-<p style="color: green"><%= flash[:notice] %></p>
 
 <%= yield %>
 

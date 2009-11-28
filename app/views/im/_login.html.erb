@@ -1,7 +1,11 @@
-<div class='loginbox' id='login'>
+<div id='loginbox' class="box">
 
+	<div class="boxtop">
+		<div class="boxtoptext">Login</div>
+	</div>
+	
 	<% form_remote_tag :url=> {:action=> "login"}, :update => "content" do %>
-		<strong>Login</strong>
+
 		<table style="padding:5px; align:center">
 		<tr>
   			<td style="text-align:right;">Jabber ID </label></td>

@@ -1,112 +1,322 @@
-/* styles.css */
-/* Curtis Holmes, 8 October 2009 */
+/* 
+--------------------------------------------------
+CSS Document for EECS 393 IM Collaborator
+Curtis Holmes
+27 November 2009
+--------------------------------------------------
+
+TABLE OF CONTENTS
+
+- Variables
+	@variables
+	
+- Body & Header
+	body
+	#header
+	#header_title
+	.header_button
+	.header_button:hover
+	
+- 
+
+--------------------------------------------------
+1. Global
+--------------------------------------------------
+*/
+
+@variables {
+	trimcolor: #0099FF;
+	backcolor: #66CCFF;
+}
+
+.box {
+	background-color: white;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px;
+	border: 2px solid #0099ff;
+}
+
+.boxtop {
+	height:25px;
+	background-color: #0099FF; 
+	text-align: center;
+}
+
+.boxtoptext {
+	padding-top:2px;
+	color:white;
+	font-family:georgia;
+}
+
+/*
+--------------------------------------------------
+CSS for body & header
+--------------------------------------------------
+*/
 
 body {
-	background-color: #3399CC;
+	margin-top: 0px;
+	background-color: #66ccff;
 }
 
-.padded {
-	padding: 5px;
+#header {
+	top:0px;
+	width:100%;
+	height:60px;
+	/* background: -webkit-gradient(linear, left top, left bottom, from(#0099ff), to(#ccffff)); */
+	background-color: #0099FF; 
+	/* opacity: 0.9; */
+	-moz-border-radius-bottomleft: 4px;
+	-moz-border-radius-bottomright: 4px;
+	-webkit-border-bottom-left-radius: 4px; 
+	-webkit-border-bottom-right-radius: 4px;
+	
 }
 
-.thehead {
-	font-family: garamond;
+#header_title {
+	height:60px;
+	padding-top:14px;
+	padding-left:40px;
+	font-family:georgia;
 	font-size:x-large;
-	color: white;
+	color:white;
 }
 
-.loginbox {
-	top:80px;
-	left:10px;
-	width:300px;
-	height:170px;
+.header_button {
 	position:absolute;
-	-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
-	background-color: white;
-	opacity: 0.9;
+	left: 400px;
+	top:15px;
+	height:30px;
+	width:75px;
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	color:white;
+	font-family:georgia;
+}
+
+.header_button:hover {
+	background-color: #66ccff;
+}
+
+/*
+--------------------------------------------------
+CSS for login
+--------------------------------------------------
+*/
+
+#loginbox {
+	position: relative;
+	left: 10px;
+	top: 20px;
+	width: 300px;
+	height:150px;
 	text-align:center;
-	font-family: garamond;
 }
 
-.infobox {
-	top:80px;
-	left:320px;
-	width:620px;
-	height:400px;
+#infobox {
 	position:absolute;
-	-moz-border-radius: 10px; 
-	-webkit-border-radius: 10px;
+	top:80px;
+	left:340px;
+	width:600px;
+	height:150px;
+}
+
+#infotext {
+	margin-left: 5px;
+}
+
+
+/*
+--------------------------------------------------
+CSS for buddy list
+--------------------------------------------------
+*/
+
+#buddylist {
+
+	position: relative;
+	left: 10px;
+	top: 20px;
+	width: 300px;
 	background-color: white;
-	opacity: 0.9;
-	font-family: garamond;	
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px;
+	border: 2px solid #0099ff;
+	
 }
 
 .buddy {
-	margin: 0px 0px 2px 0px;
-	padding-left:5px;
-	top:0px;
-	left:0px;
-	width:300px;
-	height:30px;
-	position:relative;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	background-color: white;
-	opacity: 0.9;
-	font-family: garamond;	
-}
-.buddylist {
-	top:80px;
-	left:40px;
-	width:300px;
-	position:absolute;	
-	
-}
-.rightside {
-	top:80px;
-	left:360px;
-	width:300px;
-	position:absolute;	
-	
-}
-/* MESSAGE CSS */
-.message {
-	height:158px;
-	-moz-border-radius: 5px; 
-	-webkit-border-radius: 5px;
-	background-color: white;
-	opacity: 0.9;
-	border: 3px;
-	border-color: blue;
+	height: 25px;	
 }
 
-.messageheader {
-	height: 20px;
-	background-color: blue;
-	color: white;
-	font-family: garamond;
-	text-align:center;
-	-moz-border-radius-topleft: 5px;
-	-moz-border-radius-topright: 5px;
-	-webkit-border-radius-top-left: 5px; 
-	-webkit-border-radius-top-right: 5px; 
-
+.buddy:hover {
+	background: #66ccff;
 }
 
-.messagetext {
-	height: 100px;
+.buddytext {
+	padding-left:4px;
+	padding-top:4px;
+	text-decoration: none;
+	color:black;
 }
 
-/* END MESSAGE CSS */
+/*
+--------------------------------------------------
+CSS for chat history
+--------------------------------------------------
+*/
 
-#subbox {
-	padding: 5px;
-}
-
-#rightbox {
-	top:100px;
-	left: 360px;
+#history {
 	position:absolute;
-	width:;
+	top:230px;
+	left:340px;
+	width:600px;
+	height:100px;
+	background:white;
+	border: 2px solid #0099ff;
+	-webkit-border-radius: 4px; 
+	-moz-border-radius: 4px;
+}
+
+/*
+--------------------------------------------------
+CSS for footer & bottom windows
+--------------------------------------------------
+*/
+
+#footer {
+	position:fixed;
+	bottom: 0px;
+	height: 25px;
+	opacity: 0.6;
+	width: 100%;
+	/*background: -webkit-gradient(linear, left top, left bottom, from(#ccffff), to(#0099ff));*/
+	background-color: #0099FF;
+	-webkit-border-top-left-radius: 2px; 
+	-webkit-border-top-right-radius: 2px;
+	-moz-border-radius-topleft: 2px;
+	-moz-border-radius-topright: 2px;
+	margin-right:10px;
+}
+
+#bottom_windows {
+	position:fixed;
+	bottom: 0px;
+	right: 40px;
+}
+
+.window {
+	float:left;
+	margin-left:40px;
+	width:220px;
+	height:300px;
+	background-color: white;
+	position:relative;
+	-webkit-border-top-left-radius: 4px; 
+	-webkit-border-top-right-radius: 4px;
+	-moz-border-radius-topleft: 4px;
+	-moz-border-radius-topright: 4px;
+	border-left: 2px solid #0099ff;
+	border-right: 2px solid #0099ff;
+}
+
+.minwindow {
+	float:left;
+	margin-left:40px;
+	width:220px;
+	height:300px;
+	bottom:-275px;
+	position:relative;
+}
+
+.windowtop {
+	position:relative;
+	top: 0px;
+	height:25px;
+	/*background: -webkit-gradient(linear, left top, left bottom, from(#ccffff), to(#0099ff));*/
+	background-color: #0099FF; 
+	font-color:white;
+}
+
+.windowtop p {
+	padding-top:-5px;
+	color:white;
+}
+
+.closebutton {
+	background-image:url('/images/close.png');
+	height:15px;
+	width:15px;
+	float: right;
+	margin-top: 5px;
+	padding-right: 4px;
+	background-repeat:no-repeat;
+
+}
+
+.closebutton:hover {
+	background-image:url('/images/closehover.png');	
+}
+
+.minbutton {
+	background-image:url('/images/min.png');
+	height:15px;
+	width:15px;
+	float: right;
+	margin-top: 5px;
+	padding-right: 4px;
+	background-repeat:no-repeat;
+}
+
+.minbutton:hover {
+	background-image:url('/images/minhover.png');	
+}
+
+.maxbutton {
+	background-image:url('/images/max.png');
+	height:15px;
+	width:15px;
+	float: right;
+	margin-top: 5px;
+	padding-right: 4px;
+	background-repeat:no-repeat;
+}
+
+.maxbutton:hover {
+	background-image:url('/images/maxhover.png');	
+}
+
+.windowtoptext {
+	float: left;
+	padding-top:3px;
+	padding-left:4px;
+	color: white;
+	font-family: "georgia";
+}
+
+.windowtextarea {
+	padding: 0 0 0 0;
+	width:220px;
+	height: 200px; /*
+	top:-1px;
+	position:relative; */
+	resize:none;
+	color:black;
+	font-size:14px;
+	font-family: georgia;
+	border: 0px;
+}
+
+.windowtextenter {
+	margin: 12px 5px 2px 5px;
+	width:206px;
+	height: 35px;
+	position:relative;
+	resize:none;
+	
+	font-size:14px;
+	font-family: georgia;
+	border: 2px solid #0099ff;
+	/*border: 2px; */
+	/*border-color: #0099ff;*/
 }
