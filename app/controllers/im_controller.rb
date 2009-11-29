@@ -21,18 +21,14 @@ class ImController < ApplicationController
         @loginerror = "Could not be logged in" #+ params[:login] + params[:password]
         render :partial => "login_error"        
           
-    else #Start Listener
-        MiddleMan.new_worker(:worker => :listener_worker, :worker_key => params[:login]+"_receive")
-        @listener = MiddleMan.worker(:listener_worker, params[:login]+"_receive")
-        @listener.async_listen(:arg => login_info)
-          
+    else 
+        @worker.listen_manager
         buddylist
     end     
   end
   
   def buddylist
     @buddies = @worker.getbuddylist
-    @worker.logout
     
     if @buddies.nil? 
        @buddies = "" 
@@ -50,17 +46,12 @@ class ImController < ApplicationController
   
   def sendmessage
     
+    #Send message
     worker = MiddleMan.worker(:connector_worker, session[:login])
-    worker.login(:arg => [session[:login], session[:password]])
     worker.message(:arg => [params[:to], params[:msg]])
-    worker.logout
-    
-    #@user = params[:buddy]
-    #@text = params[:text] + "Me: " + params[:msg] + "<br/>"
+
+    #display nothing
     render :nothing => true
-    
-    #render :partial => "displaymessage"
-    
   end
   
 end

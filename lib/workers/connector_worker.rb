@@ -21,6 +21,7 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
       @cl = Jabber::Client.new(jid)
       @cl.connect
       @cl.auth(@pass)
+      
       pres = Jabber::Presence.new.set_type(:available)
       @cl.send(pres)
     rescue
@@ -54,6 +55,12 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
   
   end
   
+  def update_status
+    #This will update the status
+    #pres = Jabber::Presence.new.set_type(:available)
+    #@cl.send(pres)
+  end
+  
   def message(arg)
     #Get params
     msg = arg.pop
@@ -77,6 +84,38 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
     message(:arg => msg_info)
     logout
         
+  end
+
+  def listen_manager
+      thread_pool.defer(:listen)
+  end
+
+  def listen
+
+    @cl.add_presence_callback do |pres|
+
+      begin
+          #Juggernaut.send_to_all("alert('Presence Received: From: " + pres.from.to_s + "')")
+      rescue
+          #Juggernaut.send_to_all("alert('Presence Received but error')")
+      end
+        #Juggernaut.send_to_all("alert('Presence Received')")
+    end
+
+    @cl.add_message_callback do |message|
+
+      from = message.from.to_s.split("/").first
+      body = message.body.to_s
+
+      begin
+          Juggernaut.send_to_all("javascript:message('" + from + "', '" + body + "')")
+          #Juggernaut.send_to_all("alert('Message Received: " + from + ": " + body + "')")
+      rescue
+          Juggernaut.send_to_all("alert('Message Received')")
+      end
+    end
+
+    Thread.stop
   end
 
 end
