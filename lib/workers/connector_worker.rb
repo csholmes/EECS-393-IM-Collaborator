@@ -55,10 +55,9 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
   
   end
   
-  def update_status
-    #This will update the status
-    #pres = Jabber::Presence.new.set_type(:available)
-    #@cl.send(pres)
+  def update_presence(arg) #This will update the presence
+    pres = Jabber::Presence.new.set_type(arg)
+    @cl.send(pres)
   end
   
   def message(arg)
@@ -69,37 +68,28 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
     #Send Message
     m = Jabber::Message::new(to, msg).set_type(:normal) #.set_id('1')
     @cl.send(m)    
+    #Juggernaut.send_to_all("alert('Message Sent')");
   end
 
   def logout
     @cl.close
   end
+
+  def listen_manager(arg)
+      thread_pool.defer(:listen, arg)
+  end
+
+  def listen(arg)
+    
+    client = arg
   
-  def send_message(arg)
-    
-    login_info = arg.pop
-    msg_info = arg.pop
-    
-    login(:arg => login_info)
-    message(:arg => msg_info)
-    logout
-        
-  end
-
-  def listen_manager
-      thread_pool.defer(:listen)
-  end
-
-  def listen
-
     @cl.add_presence_callback do |pres|
+      
+      from = pres.from.to_s.split("/").first
+      show = pres.show.to_s
+      
+      Juggernaut.send_to_client("javascript:updatePresence('" + from + "', '" + show + "')", client)
 
-      begin
-          #Juggernaut.send_to_all("alert('Presence Received: From: " + pres.from.to_s + "')")
-      rescue
-          #Juggernaut.send_to_all("alert('Presence Received but error')")
-      end
-        #Juggernaut.send_to_all("alert('Presence Received')")
     end
 
     @cl.add_message_callback do |message|
@@ -108,10 +98,9 @@ class ConnectorWorker < BackgrounDRb::MetaWorker
       body = message.body.to_s
 
       begin
-          Juggernaut.send_to_all("javascript:message('" + from + "', '" + body + "')")
-          #Juggernaut.send_to_all("alert('Message Received: " + from + ": " + body + "')")
+          Juggernaut.send_to_client("javascript:message('" + from + "', '" + body + "')", client)
       rescue
-          Juggernaut.send_to_all("alert('Message Received')")
+          Juggernaut.send_to_client("alert('Message Received')", client)
       end
     end
 

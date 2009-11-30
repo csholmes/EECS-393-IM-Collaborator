@@ -145,19 +145,40 @@ CSS for buddy list
 	
 }
 
-.buddy {
+.buddy_offline {
 	height: 25px;	
+}
+
+.buddy {
+	height: 25px;
 }
 
 .buddy:hover {
 	background: #66ccff;
 }
 
+.buddytext_offline {
+	position:relative;
+	top: -25px;
+	left: 19px;
+	padding-top:4px;
+	text-decoration: none;
+	color:gray;
+}
+
 .buddytext {
-	padding-left:4px;
+	position:relative;
+	top: -25px;
+	left: 19px;
 	padding-top:4px;
 	text-decoration: none;
 	color:black;
+}
+
+.buddyimage {
+	padding-top:8px;
+	padding-bottom:8px;
+	padding-left:5px;
 }
 
 /*

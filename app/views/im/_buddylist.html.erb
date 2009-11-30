@@ -2,14 +2,23 @@
 	<div class="boxtop">
 		<div class="boxtoptext">Buddy List</div>
 	</div>
+	
+	<div id="green"></div>
+	<div id="yellow"></div>	
+	<div id="red"></div>	
+		
+	<div id="offline">
 
-	<% @buddies.each do |buddy| %>
+		<% @buddies.each do |buddy| %>
 	
-	<div class="buddy" onclick="openChatWindow('<%= buddy %>', '<%= buddy %>');">
-		<div class="buddytext"><%= buddy %></div>
+			<div id="buddy_<%= buddy %>" class="buddy_offline">
+				<img src="/images/nocircle.png" class="buddyimage" id="buddyimage_<%= buddy %>">
+				<div class="buddytext_offline" id="buddytext_<%= buddy %>"><%= buddy %></div>
+			</div>
+	
+		<% end %>
+	
 	</div>
-	
-	<% end %>
 
 </div>
 

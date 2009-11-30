@@ -82,7 +82,7 @@ function openChatWindow(user, name) {
 		
 		var textenter = document.createElement('textarea');
 		textenter.className = "windowtextenter";
-		textenter.setAttribute("onkeyup", "checkEnter('csh22@case.edu', this, event)");
+		textenter.setAttribute("onkeyup", "checkEnter('" + user + "', this, event)");
 		
 		//Append children
 		div.appendChild(topdiv);
@@ -147,4 +147,69 @@ function sendMessage (user, msg) {
 function rtrim(stringToTrim) {
 	return stringToTrim.replace(/\s+$/,"");
 }
+
+// for changing presence
+
+function updatePresence(user, presence) {
+	
+	//alert('sdfsdfsd');
+	//alert(user + " " + presence);
+	// remove old buddy 
+	
+
+	if (document.getElementById('buddy_' + user)) {
+		
+		var buddy = document.getElementById('buddy_' + user);
+
+		if (buddy.className == "buddy_offline") {
+
+			buddy.className = "buddy";
+			buddy.setAttribute("onclick", "openChatWindow('"+ user +"', '"+ user +"');");
+			buddytext = document.getElementById('buddytext_' + user);
+			buddytext.className = "buddytext";
+
+			// Move buddy to online
+			buddy.parentNode.removeChild(buddy);
+			
+		}
+
+		// Update presence color
+		
+		
+		
+		switch (presence) {
+		
+		case '':
+			document.getElementById("green").appendChild(buddy);
+			buddycolor = document.getElementById("buddyimage_"+user);			
+			buddycolor.setAttribute('src', '/images/greencircle.png');
+			break;
+		case 'chat':
+			document.getElementById("green").appendChild(buddy);
+			buddycolor = document.getElementById("buddyimage_"+user);	
+			buddycolor.setAttribute('src', '/images/greencircle.png');
+			break;
+		case 'away':
+			document.getElementById("yellow").appendChild(buddy);
+			buddycolor = document.getElementById("buddyimage_"+user);	
+			buddycolor.setAttribute('src', '/images/yellowcircle.png');
+			break;
+		case 'dnd':
+			document.getElementById("red").appendChild(buddy);
+			buddycolor = document.getElementById("buddyimage_"+user);	
+			buddycolor.setAttribute('src', '/images/redcircle.png');
+			break;
+		default:
+			document.getElementById("offline").appendChild(buddy);
+			break;
+		}
+		
+	} 
+}
+
+function logout() {
+	
+	new Ajax.Updater('nothing', '/im/logout', {asynchronus:true, evalScripts:true});
+	//alert('closing');
+} 
 
